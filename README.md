@@ -112,6 +112,7 @@ Para garantir que uma mensagem só seja considerada "entregue" após o processam
 ---
 
 ## 📚 Referências
+- https://medium.com/azure-na-pratica/apache-kafka-kafdrop-docker-compose-montando-rapidamente-um-ambiente-para-testes-606cc76aa66
 
 - Apache Kafka: [https://kafka.apache.org/documentation](https://kafka.apache.org/documentation)
 - Confluent Kafka Python: [https://docs.confluent.io/platform/current/clients/confluent-kafka-python](https://docs.confluent.io/platform/current/clients/confluent-kafka-python)
