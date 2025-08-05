@@ -4,7 +4,7 @@ import json
 import time
 
 BOOTSTRAP_SERVERS = 'localhost:9092'
-TOPICO_FILA = 'fila-segura'
+TOPICO_FILA = 'BRANCO'
 
 # Criar tópico com 1 partição (comportamento de fila)
 def criar_topico():
@@ -32,7 +32,8 @@ def enviar_mensagem():
         else:
             print(f'📤 Enviado com sucesso: {msg.value().decode()}')
 
-    mensagem = {"evento": "temperatura", "valor": 25.3}
+    mensagem = [{"codigoEstacao": "29050000", "data": "2025-08-05 07:45:00", "cota": 339, "chuva": 53.8, "cota2": -9999}, {"codigoEstacao": "29050000", "data": "2025-08-05 08:00:00", "cota": 339, "chuva": 53.8, "cota2": -9999}, {"codigoEstacao": "29050000", "data": "2025-08-05 08:15:00", "cota": 339, "chuva": 53.8, "cota2": -9999}, {"codigoEstacao": "29050000", "data": "2025-08-05 08:30:00", "cota": 339, "chuva": 53.8, "cota2": -9999}, {"codigoEstacao": "23700000", "data": "2025-08-05 07:45:00", "cota": 78, "chuva": 46.0, "cota2": -9999}, {"codigoEstacao": "23700000", "data": "2025-08-05 08:00:00", "cota": 78, "chuva": 46.0, "cota2": -9999}, {"codigoEstacao": "23700000", "data": "2025-08-05 08:15:00", "cota": 78, "chuva": 46.0, "cota2": -9999}, {"codigoEstacao": "23700000", "data": "2025-08-05 08:30:00", "cota": 78, "chuva": 46.0, "cota2": -9999}, {"codigoEstacao": "27500000", "data": "2025-08-05 07:45:00", "cota": 307, "chuva": 246.8, "cota2": -9999}, {"codigoEstacao": "27500000", "data": "2025-08-05 08:00:00", "cota": 307, "chuva": 246.8, "cota2": -9999}, {"codigoEstacao": "27500000", "data": "2025-08-05 08:15:00", "cota": 307, "chuva": 246.8, "cota2": -9999}, {"codigoEstacao": "27500000", "data": "2025-08-05 08:30:00", "cota": 307, "chuva": 246.8, "cota2": -9999}, {"codigoEstacao": "18390000", "data": "2025-08-05 07:45:00", "cota": 490, "chuva": 267.2, "cota2": -9999}, {"codigoEstacao": "18390000", "data": "2025-08-05 08:00:00", "cota": 489, "chuva": 267.2, "cota2": -9999}, {"codigoEstacao": "18390000", "data": "2025-08-05 08:15:00", "cota": 489, "chuva": 267.2, "cota2": -9999}, {"codigoEstacao": "18390000", "data": "2025-08-05 08:30:00", "cota": 488, "chuva": 267.2, "cota2": -9999}, {"codigoEstacao": "15560000", "data": "2025-08-05 07:30:00", "cota": 676, "chuva": 367.0, "cota2": -9999}, {"codigoEstacao": "15560000", "data": "2025-08-05 07:45:00", "cota": 676, "chuva": 367.0, "cota2": -9999}, {"codigoEstacao": "15560000", "data": "2025-08-05 08:00:00", "cota": 676, "chuva": 367.0, "cota2": -9999}, {"codigoEstacao": "15560000", "data": "2025-08-05 08:15:00", "cota": 676, "chuva": 367.0, "cota2": -9999}, {"codigoEstacao": "19500000", "data": "2025-08-05 07:45:00", "cota": 206, "chuva": 1450.2, "cota2": -9999}, {"codigoEstacao": "19500000", "data": "2025-08-05 08:00:00", "cota": 204, "chuva": 1450.2, "cota2": -9999}, {"codigoEstacao": "19500000", "data": "2025-08-05 08:15:00", "cota": 205, "chuva": 1450.2, "cota2": -9999}, {"codigoEstacao": "19500000", "data": "2025-08-05 08:30:00", "cota": 206, "chuva": 1450.2, "cota2": -9999}, {"codigoEstacao": "30300000", "data": "2025-08-05 07:45:00", "cota": 531, "chuva": 1273.0, "cota2": -9999}, {"codigoEstacao": "30300000", "data": "2025-08-05 08:00:00", "cota": 531, "chuva": 1273.0, "cota2": -9999}, {"codigoEstacao": "30300000", "data": "2025-08-05 08:15:00", "cota": 531, "chuva": 1273.0, "cota2": -9999}, {"codigoEstacao": "30300000", "data": "2025-08-05 08:30:00", "cota": 531, "chuva": 1273.0, "cota2": -9999}, {"codigoEstacao": "28850000", "data": "2025-08-05 08:00:00", "cota": 270, "chuva": 73.6, "cota2": -9999}, {"codigoEstacao": "28850000", "data": "2025-08-05 08:15:00", "cota": 270, "chuva": 73.6, "cota2": -9999}, {"codigoEstacao": "28850000", "data": "2025-08-05 08:30:00", "cota": 270, "chuva": 73.6, "cota2": -9999}, {"codigoEstacao": "28850000", "data": "2025-08-05 08:45:00", "cota": 270, "chuva": 73.6, "cota2": -9999}, {"codigoEstacao": "18650000", "data": "2025-08-05 07:30:00", "cota": -9999, "chuva": 14.0, "cota2": -9999}, {"codigoEstacao": "18650000", "data": "2025-08-05 07:45:00", "cota": -9999, "chuva": 14.0, "cota2": -9999}, {"codigoEstacao": "18650000", "data": "2025-08-05 08:00:00", "cota": -9999, "chuva": 14.0, "cota2": -9999}, {"codigoEstacao": "18650000", "data": "2025-08-05 08:15:00", "cota": -9999, "chuva": 14.0, "cota2": -9999}, {"codigoEstacao": "15150000", "data": "2025-08-05 07:45:00", "cota": 423, "chuva": 67.2, "cota2": -9999}, {"codigoEstacao": "15150000", "data": "2025-08-05 08:00:00", "cota": 423, "chuva": 67.2, "cota2": -9999}, {"codigoEstacao": "15150000", "data": "2025-08-05 08:15:00", "cota": 423, "chuva": 67.2, "cota2": -9999}, {"codigoEstacao": "15150000", "data": "2025-08-05 08:30:00", "cota": 423, "chuva": 67.2, "cota2": -9999}, {"codigoEstacao": "30080000", "data": "2025-08-05 07:45:00", "cota": 488, "chuva": 1407.8, "cota2": -9999}, {"codigoEstacao": "30080000", "data": "2025-08-05 08:00:00", "cota": 487, "chuva": 1407.8, "cota2": -9999}, {"codigoEstacao": "30080000", "data": "2025-08-05 08:15:00", "cota": 487, "chuva": 1407.8, "cota2": -9999}, {"codigoEstacao": "30080000", "data": "2025-08-05 08:30:00", "cota": 487, "chuva": 1407.8, "cota2": -9999}, {"codigoEstacao": "17900000", "data": "2025-08-05 07:45:00", "cota": 665, "chuva": 1166.4, "cota2": -9999}, {"codigoEstacao": "17900000", "data": "2025-08-05 08:00:00", "cota": 664, "chuva": 1166.4, "cota2": -9999}, {"codigoEstacao": "17900000", "data": "2025-08-05 08:15:00", "cota": 665, "chuva": 1166.4, "cota2": -9999}, {"codigoEstacao": "17900000", "data": "2025-08-05 08:30:00", "cota": 665, "chuva": 1166.4, "cota2": -9999}, {"codigoEstacao": "17050001", "data": "2025-08-05 07:45:00", "cota": 712, "chuva": 822.4, "cota2": -9999}, {"codigoEstacao": "17050001", "data": "2025-08-05 08:00:00", "cota": 711, "chuva": 822.4, "cota2": -9999}, {"codigoEstacao": "17050001", "data": "2025-08-05 08:15:00", "cota": 711, "chuva": 822.4, "cota2": -9999}, {"codigoEstacao": "17050001", "data": "2025-08-05 08:30:00", "cota": 710, "chuva": 822.4, "cota2": -9999}]
+                
     json_data = json.dumps(mensagem)
 
     producer.produce(TOPICO_FILA, value=json_data.encode(), callback=callback)
@@ -42,7 +43,6 @@ def enviar_mensagem():
 def consumir_mensagem():
     consumer = Consumer({
         'bootstrap.servers': BOOTSTRAP_SERVERS,
-        'group.id': 'grupo-consumidor-seguro',
         'enable.auto.commit': False,
         'auto.offset.reset': 'earliest'
     })
@@ -73,5 +73,5 @@ def consumir_mensagem():
 if __name__ == "__main__":
     criar_topico()
     enviar_mensagem()
-    time.sleep(1)
-    consumir_mensagem()
+    #time.sleep(1)
+    #consumir_mensagem()
