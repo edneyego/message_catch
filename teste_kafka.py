@@ -45,6 +45,7 @@ def consumir_mensagem():
         'bootstrap.servers': BOOTSTRAP_SERVERS,
         'enable.auto.commit': False,
         'auto.offset.reset': 'earliest'
+        'group.id': 'grupo-medicoes',
     })
 
     consumer.subscribe([TOPICO_FILA])
