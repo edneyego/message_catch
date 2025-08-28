@@ -34,7 +34,7 @@ def enviar_mensagem():
 
     mensagem = [{
                 "codigoEstacao": "34311000",
-                "data": "2025-08-22 06:45",
+                "data": "2025-08-26 06:45",
                 "sensores": [
                     {
                         "sensor": "chuva_acumulada",
@@ -46,7 +46,7 @@ def enviar_mensagem():
                     },
                     {
                         "sensor": "cota_adotada",
-                        "valor": 0.0
+                        "valor": 25.0
                     },
                     {
                         "sensor": "cota_display",
@@ -67,8 +67,8 @@ def enviar_mensagem():
                 ]
             },
             {
-                "codigoEstacao": "34311000",
-                "data": "2025-08-22 07:00",
+                "codigoEstacao": "34311050",
+                "data": "2025-08-26 07:00",
                 "sensores": [
                     {
                         "sensor": "chuva_acumulada",
@@ -76,7 +76,7 @@ def enviar_mensagem():
                     },
                     {
                         "sensor": "chuva_adotada",
-                        "valor": 0.0
+                        "valor": 50.0
                     },
                     {
                         "sensor": "cota_adotada",
@@ -88,7 +88,7 @@ def enviar_mensagem():
                     },
                     {
                         "sensor": "cota_manual",
-                        "valor": 0.0
+                        "valor": 80.0
                     },
                     {
                         "sensor": "cota_sensor",
@@ -97,142 +97,6 @@ def enviar_mensagem():
                     {
                         "sensor": "vazao_adotada",
                         "valor": 0.0
-                    }
-                ]
-            },
-            {
-                "codigoEstacao": "34311000",
-                "data": "2025-08-22 07:15",
-                "sensores": [
-                    {
-                        "sensor": "chuva_acumulada",
-                        "valor": 14.0
-                    },
-                    {
-                        "sensor": "chuva_adotada",
-                        "valor": 0.0
-                    },
-                    {
-                        "sensor": "cota_adotada",
-                        "valor": 0.0
-                    },
-                    {
-                        "sensor": "cota_display",
-                        "valor": 0.0
-                    },
-                    {
-                        "sensor": "cota_manual",
-                        "valor": 0.0
-                    },
-                    {
-                        "sensor": "cota_sensor",
-                        "valor": -9999.0
-                    },
-                    {
-                        "sensor": "vazao_adotada",
-                        "valor": 0.0
-                    }
-                ]
-            },
-            {
-                "codigoEstacao": "34311000",
-                "data": "2025-08-22 07:30",
-                "sensores": [
-                    {
-                        "sensor": "chuva_acumulada",
-                        "valor": 14.0
-                    },
-                    {
-                        "sensor": "chuva_adotada",
-                        "valor": 0.0
-                    },
-                    {
-                        "sensor": "cota_adotada",
-                        "valor": 0.0
-                    },
-                    {
-                        "sensor": "cota_display",
-                        "valor": 0.0
-                    },
-                    {
-                        "sensor": "cota_manual",
-                        "valor": 0.0
-                    },
-                    {
-                        "sensor": "cota_sensor",
-                        "valor": -9999.0
-                    },
-                    {
-                        "sensor": "vazao_adotada",
-                        "valor": 0.0
-                    }
-                ]
-            },
-            {
-                "codigoEstacao": "34311000",
-                "data": "2025-08-22 07:45",
-                "sensores": [
-                    {
-                        "sensor": "chuva_acumulada",
-                        "valor": 14.0
-                    },
-                    {
-                        "sensor": "chuva_adotada",
-                        "valor": 0.0
-                    },
-                    {
-                        "sensor": "cota_adotada",
-                        "valor": 0.0
-                    },
-                    {
-                        "sensor": "cota_display",
-                        "valor": 0.0
-                    },
-                    {
-                        "sensor": "cota_manual",
-                        "valor": 0.0
-                    },
-                    {
-                        "sensor": "cota_sensor",
-                        "valor": -9999.0
-                    },
-                    {
-                        "sensor": "vazao_adotada",
-                        "valor": 0.0
-                    }
-                ]
-            },
-            {
-                "codigoEstacao": "34311000",
-                "data": "2025-08-22 08:00",
-                "sensores": [
-                    {
-                        "sensor": "chuva_acumulada",
-                        "valor": 14.0
-                    },
-                    {
-                        "sensor": "chuva_adotada",
-                        "valor": 0.0
-                    },
-                    {
-                        "sensor": "cota_adotada",
-                        "valor": 213.0
-                    },
-                    {
-                        "sensor": "cota_display",
-                        "valor": 213.0
-                    },
-                    {
-                        "sensor": "cota_manual",
-                        "valor": 0.0
-                    },
-                    {
-                        "sensor": "cota_sensor",
-                        "valor": -9999.0
-                    },
-                    {
-                        "sensor": "vazao_adotada",
-                        "valor": 228.85
                     }
                 ]
             }
