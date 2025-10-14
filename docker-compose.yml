@@ -2,6 +2,7 @@ version: '3'
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.4.3
+    restart: always
     networks: 
       - broker-kafka
     environment:
@@ -10,6 +11,7 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka:7.4.3
+    restart: always
     networks: 
       - broker-kafka
     depends_on:
@@ -26,6 +28,7 @@ services:
 
   kafdrop:
     image: obsidiandynamics/kafdrop:latest
+    restart: always
     networks: 
       - broker-kafka
     depends_on:
