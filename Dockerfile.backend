@@ -14,10 +14,19 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY . .
+COPY consumer.py .
+COPY teste_kafka.py .
 
-# Create health check file
-RUN mkdir -p /tmp && touch /tmp/healthy
+# Make consumer executable
+RUN chmod +x consumer.py
+
+# Create directory for health check
+RUN mkdir -p /tmp
+
+# Set environment variables (will be overridden by K8s secret)
+ENV KAFKA_BOOTSTRAP_SERVERS="localhost:9092" \
+    GROUP_ID="message-catch-consumer" \
+    KAFKA_TOPIC="BRANCO"
 
 # Run the consumer
-CMD ["python", "-u", "teste_kafka.py"]
+CMD ["python", "-u", "consumer.py"]
