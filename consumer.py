@@ -7,6 +7,7 @@ import json
 import time
 import signal
 from confluent_kafka import Consumer, KafkaError
+from confluent_kafka.admin import AdminClient, NewTopic
 
 # Read from environment variables (K8s secret)
 BOOTSTRAP_SERVERS = os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'localhost:9092')
@@ -39,6 +40,38 @@ def remove_health_file():
     except Exception as e:
         print(f"⚠️ Failed to remove health file: {e}")
 
+def ensure_topic_exists():
+    """Ensure topic exists, create if not"""
+    try:
+        admin = AdminClient({'bootstrap.servers': BOOTSTRAP_SERVERS})
+        
+        # Check if topic exists
+        metadata = admin.list_topics(timeout=10)
+        if TOPIC in metadata.topics:
+            print(f"✅ Topic '{TOPIC}' already exists")
+            return True
+        
+        # Create topic if not exists
+        print(f"📝 Creating topic '{TOPIC}'...")
+        topic = NewTopic(TOPIC, num_partitions=3, replication_factor=1)
+        fs = admin.create_topics([topic])
+        
+        for topic_name, f in fs.items():
+            try:
+                f.result()  # Wait for operation to finish
+                print(f"✅ Topic '{topic_name}' created successfully")
+                return True
+            except Exception as e:
+                if "already exists" in str(e).lower():
+                    print(f"✅ Topic '{topic_name}' already exists")
+                    return True
+                else:
+                    print(f"⚠️ Failed to create topic: {e}")
+                    return False
+    except Exception as e:
+        print(f"⚠️ Error ensuring topic exists: {e}")
+        return False
+
 # Graceful shutdown handler
 running = True
 
@@ -54,6 +87,21 @@ signal.signal(signal.SIGTERM, shutdown_handler)
 def consume_messages():
     """Main consumer loop"""
     global running
+    
+    # Wait for topic to be available
+    max_retries = 30
+    retry_count = 0
+    
+    while retry_count < max_retries and running:
+        if ensure_topic_exists():
+            break
+        retry_count += 1
+        print(f"⏳ Waiting for topic (attempt {retry_count}/{max_retries})...")
+        time.sleep(10)
+    
+    if retry_count >= max_retries:
+        print(f"❌ Topic '{TOPIC}' not available after {max_retries} attempts")
+        sys.exit(1)
     
     # Kafka consumer configuration
     consumer_config = {
@@ -88,10 +136,16 @@ def consume_messages():
                 if msg.error().code() == KafkaError._PARTITION_EOF:
                     # End of partition, not a critical error
                     continue
+                elif msg.error().code() == KafkaError.UNKNOWN_TOPIC_OR_PART:
+                    # Topic was deleted, wait for recreation
+                    print(f"⚠️ Topic not found, waiting for recreation...")
+                    time.sleep(10)
+                    continue
                 else:
                     print(f"❌ Consumer error: {msg.error()}")
-                    remove_health_file()
-                    break
+                    # Don't crash, just log and continue
+                    time.sleep(5)
+                    continue
             
             try:
                 # Process message
@@ -131,7 +185,11 @@ def consume_messages():
         
     except Exception as e:
         print(f"❌ Fatal error: {e}")
-        remove_health_file()
+        import traceback
+        traceback.print_exc()
+        # Don't exit, keep container running for debugging
+        print("⏳ Keeping container alive for debugging (60s)...")
+        time.sleep(60)
         sys.exit(1)
         
     finally:
