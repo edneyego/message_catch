@@ -88,8 +88,8 @@ def consume_messages():
     """Main consumer loop"""
     global running
     
-    # Wait for topic to be available
-    max_retries = 30
+    # Wait for topic to be available (max 2 minutes)
+    max_retries = 12  # 12 * 10s = 2 minutes
     retry_count = 0
     
     while retry_count < max_retries and running:
@@ -100,7 +100,7 @@ def consume_messages():
         time.sleep(10)
     
     if retry_count >= max_retries:
-        print(f"❌ Topic '{TOPIC}' not available after {max_retries} attempts")
+        print(f"❌ Topic '{TOPIC}' not available after {max_retries} attempts (2min)")
         sys.exit(1)
     
     # Kafka consumer configuration
