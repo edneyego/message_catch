@@ -62,7 +62,7 @@ jobs:
       - name: Dispatch Message Catch deployment
         uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ secrets.REGISTRY_TOKEN }}
+          token: ${{ secrets.SGB_INFRA_DISPATCH_TOKEN }}
           repository: edneyego/sgb_infra
           event-type: deploy-message-catch
           client-payload: '{"project":"message_catch","ref":"${{ github.ref_name }}","sha":"${{ github.sha }}"}'
