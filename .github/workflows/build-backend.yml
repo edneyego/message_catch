@@ -4,11 +4,7 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '**.py'
-      - 'requirements.txt'
-      - 'Dockerfile.backend'
-      - '.github/workflows/build-backend.yml'
+      - PROD
   workflow_dispatch:
 
 env:
@@ -49,8 +45,24 @@ jobs:
           context: .
           file: ./Dockerfile.backend
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: |
+            ${{ steps.meta.outputs.tags }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Image digest
         run: echo "Image pushed with digest ${{ steps.build.outputs.digest }}"
+
+  notify-infra:
+    if: github.ref == 'refs/heads/PROD'
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch Message Catch deployment
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.REGISTRY_TOKEN }}
+          repository: edneyego/sgb_infra
+          event-type: deploy-message-catch
+          client-payload: '{"project":"message_catch","ref":"${{ github.ref_name }}","sha":"${{ github.sha }}"}'
